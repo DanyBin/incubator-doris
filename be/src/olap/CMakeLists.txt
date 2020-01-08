@@ -1,0 +1,115 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# where to put generated libraries
+set(LIBRARY_OUTPUT_PATH "${BUILD_DIR}/src/olap")
+
+# where to put generated binaries
+set(EXECUTABLE_OUTPUT_PATH "${BUILD_DIR}/src/olap")
+
+add_subdirectory(rowset)
+
+add_library(Olap STATIC
+    aggregate_func.cpp
+    base_compaction.cpp
+    bloom_filter.hpp
+    bloom_filter_reader.cpp
+    bloom_filter_writer.cpp
+    byte_buffer.cpp
+    compaction.cpp
+    comparison_predicate.cpp
+    compress.cpp
+    cumulative_compaction.cpp
+    delete_handler.cpp
+    delta_writer.cpp
+    file_helper.cpp
+    file_stream.cpp
+    generic_iterators.cpp
+    hll.cpp
+    in_list_predicate.cpp
+    in_stream.cpp
+    key_coder.cpp
+    lru_cache.cpp
+    memtable.cpp
+    memtable_flush_executor.cpp
+    merger.cpp
+    null_predicate.cpp
+    olap_cond.cpp
+    olap_index.cpp
+    olap_meta.cpp
+    olap_server.cpp
+    options.cpp
+    out_stream.cpp
+    page_cache.cpp
+    push_handler.cpp
+    reader.cpp
+    row_block.cpp
+    row_block2.cpp
+    row_cursor.cpp
+    rowset_graph.cpp
+    schema.cpp
+    schema_change.cpp
+    serialize.cpp
+    storage_engine.cpp
+    data_dir.cpp
+    short_key_index.cpp
+    snapshot_manager.cpp
+    stream_index_common.cpp
+    stream_index_reader.cpp
+    stream_index_writer.cpp
+    stream_name.cpp
+    tablet.cpp
+    tablet_manager.cpp
+    tablet_meta.cpp
+    tablet_meta_manager.cpp
+    tablet_schema.cpp
+    tablet_sync_service.cpp
+    txn_manager.cpp
+    types.cpp 
+    utils.cpp
+    wrapper_field.cpp
+    rowset/segment_v2/bitmap_index_reader.cpp
+    rowset/segment_v2/bitmap_index_writer.cpp
+    rowset/segment_v2/bitshuffle_page.cpp
+    rowset/segment_v2/bitshuffle_wrapper.cpp
+    rowset/segment_v2/column_reader.cpp
+    rowset/segment_v2/column_writer.cpp
+    rowset/segment_v2/encoding_info.cpp
+    rowset/segment_v2/index_page.cpp
+    rowset/segment_v2/indexed_column_reader.cpp
+    rowset/segment_v2/indexed_column_writer.cpp
+    rowset/segment_v2/ordinal_page_index.cpp
+    rowset/segment_v2/page_compression.cpp
+    rowset/segment_v2/binary_dict_page.cpp
+    rowset/segment_v2/binary_prefix_page.cpp
+    rowset/segment_v2/segment.cpp
+    rowset/segment_v2/segment_iterator.cpp
+    rowset/segment_v2/empty_segment_iterator.cpp
+    rowset/segment_v2/segment_writer.cpp
+    rowset/segment_v2/column_zone_map.cpp
+    rowset/segment_v2/block_split_bloom_filter.cpp
+    rowset/segment_v2/bloom_filter_index_reader.cpp
+    rowset/segment_v2/bloom_filter_index_writer.cpp
+    rowset/segment_v2/bloom_filter.cpp
+    task/engine_batch_load_task.cpp
+    task/engine_checksum_task.cpp
+    task/engine_clone_task.cpp
+    task/engine_storage_migration_task.cpp
+    task/engine_publish_version_task.cpp
+    task/engine_alter_tablet_task.cpp
+    olap_snapshot_converter.cpp
+)
