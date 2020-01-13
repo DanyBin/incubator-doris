@@ -429,7 +429,52 @@ StringVal BitmapFunctions::bitmap_and(FunctionContext* ctx, const StringVal& lhs
     bitmap.serialize((char*)result.ptr);
     return result;
 }
+BooleanVal BitmapFunctions::bitmap_contains(FunctionContext *ctx, const StringVal &src, const StringVal &value) {
+    if (src.is_null || value.is_null) {
+        return BooleanVal::null();
+    }
 
+    StringParser::ParseResult result;
+    uint32_t int_value = StringParser::string_to_unsigned_int<uint32_t>(reinterpret_cast<char*>(value.ptr), value.len, &result);
+    if (result != StringParser::PARSE_SUCCESS) {
+        std::stringstream error_msg;
+        error_msg << "The bitmap_contains function argument: " << std::string(reinterpret_cast<char*>(value.ptr), value.len)
+                  << " type isn't integer family or exceed unsigned integer max value 4294967295";
+        ctx->set_error(error_msg.str().c_str());
+        return BooleanVal::null();
+    }
+
+    if (src.len == 0) {
+        return BooleanVal(false);
+    }
+
+    RoaringBitmap bitmap;
+    bitmap.update(int_value);
+    bitmap.intersect(RoaringBitmap((char*)src.ptr));
+
+    if (bitmap.cardinality() == 1) {
+        return BooleanVal(true);
+    }
+    return BooleanVal(false);
+}
+
+BooleanVal BitmapFunctions::bitmap_has_any(FunctionContext *ctx, const StringVal &lhs, const StringVal &rhs) {
+    if (lhs.is_null || rhs.is_null) {
+        return BooleanVal::null();
+    }
+
+    if (lhs.len == 0 || rhs.len == 0) {
+        return BooleanVal(false);
+    }
+
+    RoaringBitmap bitmap ((char*)lhs.ptr);
+    bitmap.intersect(RoaringBitmap((char*)rhs.ptr));
+
+    if (bitmap.cardinality() == 0) {
+        return BooleanVal(false);
+    }
+    return BooleanVal(true);
+}
 template void BitmapFunctions::bitmap_update_int<TinyIntVal>(
         FunctionContext* ctx, const TinyIntVal& src, StringVal* dst);
 template void BitmapFunctions::bitmap_update_int<SmallIntVal>(

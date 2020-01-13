@@ -109,7 +109,9 @@ bitmap_column_to_count 是 bitmap 类型的列，filter_column 是变化的维�
 
 `BITMAP_AND(expr,expr)`:计算两个Bitmap列的交集，返回值是序列化后 Bitmap 值
 
+`BITMAP_CONTAINS(Bitmap bitmap,Int value)`:计算输入值是否在Bitmap列中，返回值是 Boolean 值
 
+`BITMAP_HAS_ANY(Bitmap bitmap,Bitmap bitmap)`:计算两个Bitmap列是否存在相交元素，返回值是 Boolean 值
 
 注意：
 	1. BITMAP_UNION 函数的参数目前仅支持： 
@@ -149,4 +151,4 @@ where page in ('meituan', 'waimai');
 
 ## keyword
 
-BITMAP,BITMAP_COUNT,BITMAP_EMPTY,BITMAP_UNION,BITMAP_UNION_INT,TO_BITMAP,BITMAP_UNION_COUNT,INTERSECT_COUNT
+BITMAP,BITMAP_COUNT,BITMAP_EMPTY,BITMAP_UNION,BITMAP_UNION_INT,TO_BITMAP,BITMAP_UNION_COUNT,INTERSECT_COUNT,BITMAP_OR,BITMAP_AND,BITMAP_CONTAINS,BITMAP_HAS_ANY

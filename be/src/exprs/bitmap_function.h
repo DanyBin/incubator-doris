@@ -53,9 +53,10 @@ public:
     static StringVal bitmap_serialize(FunctionContext* ctx, const StringVal& src);
     static StringVal to_bitmap(FunctionContext* ctx, const StringVal& src);
     static StringVal bitmap_hash(FunctionContext* ctx, const StringVal& src);
-    static StringVal bitmap_or(FunctionContext* ctx, const StringVal& src,const StringVal& dst);
-    static StringVal bitmap_and(FunctionContext* ctx, const StringVal& src,const StringVal& dst);
-
+    static StringVal bitmap_or(FunctionContext* ctx, const StringVal& lhs,const StringVal& rhs);
+    static StringVal bitmap_and(FunctionContext* ctx, const StringVal& lhs,const StringVal& rhs);
+    static BooleanVal bitmap_contains(FunctionContext* ctx, const StringVal& src, const StringVal& value);
+    static BooleanVal bitmap_has_any(FunctionContext* ctx, const StringVal& lhs, const StringVal& rhs);
     // bitmap_intersect
     template<typename T, typename ValType>
     static void bitmap_intersect_init(FunctionContext* ctx, StringVal* dst);

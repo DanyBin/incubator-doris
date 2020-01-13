@@ -112,6 +112,11 @@ bitmap_column_to_count is a column of type bitmap, filter_column is a column of 
 
 `BITMAP_AND(expr,expr)`:Calculate the and of two Bitmaps Column. The return value is the serialized Bitmap value.
 
+`BITMAP_CONTAINS(Bitmap bitmap,Int value)`:Calculate whether the input value is in a Bitmap column and return a boolean value. The return value is a Boolean value
+
+`BITMAP_HAS_ANY(Bitmap bitmap,Bitmap bitmap)`:Calculate if two Bitmap columns have intersecting elements. The return value is a Boolean value
+
+
 
 note:
 1. The parameters of the BITMAP_UNION function currently only support:
@@ -151,4 +156,4 @@ where page in ('meituan', 'waimai');
 
 ## keyword
 
-BITMAP, BITMAP_COUNT, BITMAP_EMPTY, BITMAP_UNION, BITMAP_UNION_INT, TO_BITMAP, BITMAP_UNION_COUNT, INTERSECT_COUNT
+BITMAP, BITMAP_COUNT, BITMAP_EMPTY, BITMAP_UNION, BITMAP_UNION_INT, TO_BITMAP, BITMAP_UNION_COUNT, INTERSECT_COUNT, BITMAP_OR, BITMAP_AND, BITMAP_CONTAINS, BITMAP_HAS_ANY

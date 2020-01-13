@@ -614,7 +614,10 @@ visible_functions = [
         '_ZN5doris15BitmapFunctions9bitmap_orEPN9doris_udf15FunctionContextERKNS1_9StringValES6_'],
     [['bitmap_and'], 'BITMAP', ['BITMAP','BITMAP'],
         '_ZN5doris15BitmapFunctions10bitmap_andEPN9doris_udf15FunctionContextERKNS1_9StringValES6_'],
-
+    [['bitmap_contains'], 'BOOLEAN', ['BITMAP','BITMAP'],
+        '_ZN5doris15BitmapFunctions15bitmap_containsEPN9doris_udf15FunctionContextERKNS1_9StringValES6_'],
+    [['bitmap_has_any'], 'BOOLEAN', ['BITMAP','BITMAP'],
+        '_ZN5doris15BitmapFunctions14bitmap_has_anyEPN9doris_udf15FunctionContextERKNS1_9StringValES6_'],
     # aes and base64 function
     [['aes_encrypt'], 'VARCHAR', ['VARCHAR', 'VARCHAR'],
         '_ZN5doris19EncryptionFunctions11aes_encryptEPN9doris_udf'
